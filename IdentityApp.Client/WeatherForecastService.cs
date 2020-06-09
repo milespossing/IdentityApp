@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using IdentityApp.Api;
+using IdentityApp.Data;
 
-namespace Identity.Web.Data
+namespace IdentityApp.Client
 {
     public class WeatherForecastService
     {
@@ -16,18 +13,15 @@ namespace Identity.Web.Data
 
         public WeatherForecastService(WeatherServiceSettings settings)
         {
-            _client = new HttpClient();
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+            _client = new HttpClient(clientHandler);
             _client.BaseAddress = settings.Url;
         }
-        
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
         public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
         {
-            
             var data = await _client.GetAsync("weatherforecast");
             if (data.StatusCode != HttpStatusCode.OK)
                 return new WeatherForecast[0];

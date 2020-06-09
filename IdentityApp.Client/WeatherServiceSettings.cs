@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Identity.Web.Data
+namespace IdentityApp.Client
 {
     public class WeatherServiceSettings
     {

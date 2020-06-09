@@ -1,6 +1,6 @@
 using System;
 
-namespace IdentityApp.Api
+namespace IdentityApp.Data
 {
     public class WeatherForecast
     {
