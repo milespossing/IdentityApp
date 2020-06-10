@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using IdentityApp.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityApp.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    [ApiController, Route("[controller]"), Authorize]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -18,6 +18,7 @@ namespace IdentityApp.Api.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            Console.WriteLine($"Getting forecast");
             var rng = new Random();
             var output = Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {

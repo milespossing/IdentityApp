@@ -4,6 +4,7 @@
 
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using IdentityModel;
 
 namespace IdentityServer
 {
@@ -16,12 +17,25 @@ namespace IdentityServer
             };
 
         public static IEnumerable<ApiResource> Apis =>
-            new ApiResource[] 
-            { };
+            new[]
+            {
+                new ApiResource("api1","IdentityApp.Api"), 
+            };
         
         public static IEnumerable<Client> Clients =>
-            new Client[] 
-            { };
+            new[]
+            {
+                new Client()
+                {
+                    ClientId = "client",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets =
+                    {
+                        new Secret("Secret".ToSha256())
+                    },
+                    AllowedScopes = {"api1"}
+                },
+            };
         
     }
 }

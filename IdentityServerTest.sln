@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityApp.Web", "IdentityApp.Web\IdentityApp.Web.csproj", "{6FA10197-852B-4B19-A5E1-1159FBB2A2A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityApp.Api", "IdentityApp.Api\IdentityApp.Api.csproj", "{5F864EC1-EB79-40CE-ACCD-F37AB0ED52AD}"
